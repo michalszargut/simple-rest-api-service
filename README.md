@@ -1,4 +1,4 @@
-###Wymagania zadania
+### Wymagania zadania
 
 Napisz serwis we frameworku Symfony 5, który stanowi backend API dla aplikacji
 frontendowej.
