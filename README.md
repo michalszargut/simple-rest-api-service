@@ -14,3 +14,10 @@ Napisz następujące endpointy:
 3. Endpoint zwracający dane tylko zalogowanego użytkownika.
    Dodaj do projektu .docker aby można było ją uruchomić jednym poleceniem docker-
    compose up. Wykorzystaj bazę danych mysql.
+   
+
+### Endpointy dostępne
+
+1. /api/auth/register - rejestracja użytkownika
+2. /api/auth/login - logowanie użytkownika
+3. /api/user/info - informacje o zalogowanym użytkowniku

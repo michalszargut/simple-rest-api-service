@@ -1,10 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -12,6 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface
 {
     /**
+     * @Groups({"api"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -19,11 +22,13 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Groups({"api"})
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $username;
 
     /**
+     * @Groups({"api"})
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -35,27 +40,32 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Groups({"api"})
+     * @ORM\Column(type="string", length=180)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Groups({"api"})
+     * @ORM\Column(type="string", length=180)
      */
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Groups({"api"})
+     * @ORM\Column(type="string", length=180)
      */
     private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Groups({"api"})
+     * @ORM\Column(type="string", length=20)
      */
     private $phoneNumber;
 
     /**
-     * @ORM\Column(type="integer")
+     * @Groups({"api"})
+     * @ORM\Column(type="string", length=20)
      */
     private $pesel;
 
@@ -71,9 +81,13 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return (string)$this->username;
     }
 
+    /**
+     * @param string $username
+     * @return $this
+     */
     public function setUsername(string $username): self
     {
         $this->username = $username;
@@ -93,6 +107,10 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param array $roles
+     * @return $this
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -105,9 +123,13 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
+    /**
+     * @param string $password
+     * @return $this
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -135,11 +157,18 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return $this
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -147,11 +176,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
+    /**
+     * @param string $firstName
+     * @return $this
+     */
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
@@ -159,11 +195,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
+    /**
+     * @param string $lastName
+     * @return $this
+     */
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
@@ -171,11 +214,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
 
+    /**
+     * @param string $phoneNumber
+     * @return $this
+     */
     public function setPhoneNumber(string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
@@ -183,12 +233,19 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPesel(): ?int
+    /**
+     * @return string|null
+     */
+    public function getPesel(): ?string
     {
         return $this->pesel;
     }
 
-    public function setPesel(int $pesel): self
+    /**
+     * @param string $pesel
+     * @return $this
+     */
+    public function setPesel(string $pesel): self
     {
         $this->pesel = $pesel;
 

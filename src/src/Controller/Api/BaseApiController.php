@@ -9,9 +9,15 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class BaseApiController extends AbstractController
 {
+    /**
+     * @param array $data
+     * @param bool $success
+     * @param int $statusCode
+     * @return JsonResponse
+     */
     protected function getJsonResponse($data = [], $success = true, $statusCode = 200): JsonResponse
     {
-        return new JsonResponse(array_merge(['success' => $success],$data), $statusCode);
+        return new JsonResponse(array_merge($data, ['success' => $success]), $statusCode);
     }
 
     /**
