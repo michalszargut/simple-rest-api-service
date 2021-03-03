@@ -49,7 +49,7 @@ class AuthenticationController extends BaseApiController
     }
 
     /**
-     * @Route("/login", name="user_login")
+     * @Route("/login", name="user_login", methods={"POST"})
      * @param UserInterface $user
      * @param JWTTokenManagerInterface $JWTManager
      * @return JsonResponse
